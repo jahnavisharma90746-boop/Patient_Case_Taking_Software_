@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SAARTHI | AI Healthcare</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>✚</span> SAARTHI
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#assessment">Assessment</a>
+        <a href="#documents">Reports</a>
+        <a href="#doctor">Doctor Dashboard</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <button class="nav-btn" onclick="startAssessment()">
+        Get Started
+    </button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✨ AI-POWERED HEALTHCARE
+        </div>
+
+        <h1>
+            Smarter Patient
+            <span>Case Taking</span>
+        </h1>
+
+        <p>
+            SAARTHI uses AI-powered voice and text interaction
+            to collect patient information and transform it into
+            a structured case summary for doctors.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="startAssessment()">
+                Start Patient Assessment →
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="document.getElementById('doctor').scrollIntoView({behavior: 'smooth'})">
+                Doctor Dashboard
+            </button>
+
+        </div>
+
+        <div class="hero-points">
+
+            <span>✓ Voice & Text</span>
+            <span>✓ Multilingual</span>
+            <span>✓ Doctor Verified</span>
+            <span>✓ Flask & Database Connected</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+        <div class="floating-card card-one">
+            🎤
+            <div>
+                <b>Voice Input</b>
+                <small>Speak naturally</small>
+            </div>
+        </div>
+
+        <div class="ai-main">
+
+            <div class="ai-icon">
+                ✚
+            </div>
+
+            <h3>SAARTHI AI</h3>
+
+            <p>
+                Your intelligent healthcare assistant
+            </p>
+
+            <div class="ai-status">
+                <span></span> AI Assistant Ready
+            </div>
+
+        </div>
+
+        <div class="floating-card card-two">
+            📋
+            <div>
+                <b>Case Summary</b>
+                <small>Doctor ready</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WORKFLOW ================= -->
+
+<section class="workflow">
+
+    <div class="section-heading">
+
+        <div class="badge">
+            HOW IT WORKS
+        </div>
+
+        <h2>
+            From Patient to Doctor
+        </h2>
+
+        <p>
+            A simple and intelligent healthcare workflow.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-grid">
+
+        <div class="workflow-card">
+
+            <div class="workflow-number">01</div>
+
+            <div class="workflow-icon">👤</div>
+
+            <h3>Patient</h3>
+
+            <p>
+                Patient provides health information
+                through voice or text.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-arrow">→</div>
+
+
+        <div class="workflow-card">
+
+            <div class="workflow-number">02</div>
+
+            <div class="workflow-icon">🤖</div>
+
+            <h3>SAARTHI AI</h3>
+
+            <p>
+                AI asks relevant questions and
+                organizes patient responses.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-arrow">→</div>
+
+
+        <div class="workflow-card">
+
+            <div class="workflow-number">03</div>
+
+            <div class="workflow-icon">📋</div>
+
+            <h3>Case Summary</h3>
+
+            <p>
+                Information is converted into a
+                structured medical case in database.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-arrow">→</div>
+
+
+        <div class="workflow-card">
+
+            <div class="workflow-number">04</div>
+
+            <div class="workflow-icon">👨‍⚕️</div>
+
+            <h3>Doctor</h3>
+
+            <p>
+                Doctor reviews and verifies
+                the information.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ASSESSMENT ================= -->
+
+<section id="assessment" class="section assessment-section">
+
+    <div class="section-heading">
+
+        <div class="badge">
+            PATIENT ASSESSMENT
+        </div>
+
+        <h2>
+            Let's understand your health
+        </h2>
+
+        <p>
+            Answer a few simple questions.
+            You can type or use your voice.
+        </p>
+
+    </div>
+
+
+    <div class="assessment-container">
+
+
+        <!-- LEFT INFO -->
+
+        <div class="assessment-info">
+
+            <h3>
+                AI Patient Interview
+            </h3>
+
+            <p>
+                SAARTHI will ask questions one by one
+                to understand your medical history.
+            </p>
+
+
+            <div class="language-box">
+
+                <span>Language</span>
+
+                <button onclick="setLanguage('en')" id="englishBtn" class="active">
+                    English
+                </button>
+
+                <button onclick="setLanguage('hi')" id="hindiBtn">
+                    हिंदी
+                </button>
+
+            </div>
+
+
+            <div class="privacy-note">
+
+                🔒 Your information is collected securely and saved to the hospital database for medical review.
+
+            </div>
+
+        </div>
+
+
+        <!-- CHAT -->
+
+        <div class="chat-box">
+
+            <div class="chat-header">
+
+                <div class="chat-avatar">
+                    ✚
+                </div>
+
+                <div>
+
+                    <b>SAARTHI AI</b>
+
+                    <small>
+                        <span class="online-dot"></span>
+                        Online
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-area">
+
+                <div class="progress-text">
+
+                    <span id="questionNumber">
+                        Question 1 of 6
+                    </span>
+
+                    <span id="progressPercent">
+                        16%
+                    </span>
+
+                </div>
+
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+
+            </div>
+
+
+            <div class="chat-messages" id="chatMessages">
+
+                <div class="ai-message">
+
+                    <div class="message-icon">
+                        ✚
+                    </div>
+
+                    <div>
+
+                        <span id="question">
+                            Hello! I'm SAARTHI AI.
+                            What is your name?
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-area">
+
+                <input
+                    type="text"
+                    id="answer"
+                    placeholder="Type your answer..."
+                    onkeypress="handleEnter(event)"
+                >
+
+                <button
+                    class="mic-btn"
+                    onclick="voiceInput()"
+                    title="Voice Input">
+                    🎤
+                </button>
+
+                <button
+                    class="send-btn"
+                    onclick="nextQuestion()"
+                    title="Send Answer">
+                    ➤
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOCUMENTS ================= -->
+
+<section id="documents" class="section documents-section">
+
+    <div class="section-heading">
+
+        <div class="badge">
+            MEDICAL DOCUMENTS
+        </div>
+
+        <h2>
+            Upload Previous Reports
+        </h2>
+
+        <p>
+            Upload prescriptions, reports or other medical documents.
+        </p>
+
+    </div>
+
+
+    <div class="document-container">
+
+        <div class="upload-box">
+
+            <div class="upload-icon">
+                📄
+            </div>
+
+            <h3>
+                Upload Medical Document
+            </h3>
+
+            <p>
+                PDF, JPG, PNG supported (saved to database)
+            </p>
+
+            <label class="upload-button">
+
+                Choose File
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept=".pdf,.jpg,.jpeg,.png,.txt,.doc,.docx"
+                    hidden
+                >
+
+            </label>
+
+            <div id="fileName">
+                No file selected
+            </div>
+
+        </div>
+
+
+        <div class="document-process">
+
+            <h3>
+                Document Processing
+            </h3>
+
+            <div class="process-step" id="step1">
+
+                <span>1</span>
+
+                <div>
+                    <b>Document Uploaded</b>
+                    <small>Stored in database</small>
+                </div>
+
+            </div>
+
+
+            <div class="process-step" id="step2">
+
+                <span>2</span>
+
+                <div>
+                    <b>Information Extraction</b>
+                    <small>AI analyzes document</small>
+                </div>
+
+            </div>
+
+
+            <div class="process-step" id="step3">
+
+                <span>3</span>
+
+                <div>
+                    <b>Add to Case Summary</b>
+                    <small>Doctor-ready information</small>
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="analyzeDocument()">
+
+                Analyze Document →
+
+            </button>
+
+            <p id="analysisResult"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CASE SUMMARY ================= -->
+
+<section id="summary" class="section summary-section">
+
+    <div class="section-heading">
+
+        <div class="badge">
+            AI CASE SUMMARY
+        </div>
+
+        <h2>
+            Doctor-Ready Patient Case
+        </h2>
+
+        <p>
+            Structured information generated from patient responses.
+        </p>
+
+    </div>
+
+
+    <div class="summary-card">
+
+
+        <div class="summary-header">
+
+            <div>
+
+                <h3>
+                    Patient Medical History
+                </h3>
+
+                <p id="summaryCaseId">
+                    Generated by SAARTHI AI • Database Record
+                </p>
+
+            </div>
+
+            <span class="pending-status" id="caseStatusBadge">
+                ● Verification Pending
+            </span>
+
+        </div>
+
+
+        <div class="doctor-warning">
+
+            ⚠️
+            <div>
+
+                <b>AI-generated information</b>
+
+                <p>
+                    This summary is based on patient-provided
+                    information and requires doctor verification.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-grid">
+
+
+            <div class="summary-item">
+
+                <span>Patient Name</span>
+
+                <strong id="summaryName">
+                    Not provided
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>Age</span>
+
+                <strong id="summaryAge">
+                    Not provided
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>Chief Complaint</span>
+
+                <strong id="summaryComplaint">
+                    Not provided
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>Duration</span>
+
+                <strong id="summaryDuration">
+                    Not provided
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item large">
+
+                <span>Medical History</span>
+
+                <strong id="summaryHistory">
+                    Patient-provided information
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item large">
+
+                <span>Current Medications</span>
+
+                <strong id="summaryMedications">
+                    Patient-provided information
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>Allergies</span>
+
+                <strong id="summaryAllergies">
+                    None reported
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>Investigation Reports</span>
+
+                <strong id="reportStatus">
+                    Not uploaded
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div id="emergencyAlert" class="emergency-alert hidden">
+
+            🚨
+
+            <div>
+
+                <b>Priority Medical Review</b>
+
+                <p id="emergencyAlertText">
+                    Patient-reported information may require
+                    immediate medical-staff review.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="editSummary()">
+                ✏ Edit Summary
+            </button>
+
+            <button
+                class="primary-btn"
+                id="verifyBtn"
+                onclick="verifyCase()">
+                ✓ Verify Case
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOCTOR DASHBOARD ================= -->
+
+<section id="doctor" class="section dashboard-section">
+
+    <div class="section-heading">
+
+        <div class="badge">
+            DOCTOR PORTAL
+        </div>
+
+        <h2>
+            Doctor Dashboard
+        </h2>
+
+        <p>
+            Review patient cases and verify AI-generated summaries in SQLite database.
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                👥
+            </div>
+
+            <div>
+
+                <strong id="statTotalPatients">24</strong>
+
+                <span>Total Patients</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon yellow">
+                ⏳
+            </div>
+
+            <div>
+
+                <strong id="statPendingCases">8</strong>
+
+                <span>Pending Cases</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <strong id="statVerifiedCases">14</strong>
+
+                <span>Verified Cases</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card alert-card">
+
+            <div class="stat-icon red">
+                🚨
+            </div>
+
+            <div>
+
+                <strong id="statPriorityAlerts">2</strong>
+
+                <span>Priority Alerts</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="patients-card">
+
+        <div class="patients-header">
+
+            <div>
+
+                <h3>
+                    Recent Patient Cases
+                </h3>
+
+                <p>
+                    Live database records. Click "View Case" to inspect full medical profile.
+                </p>
+
+            </div>
+
+            <input
+                type="text"
+                id="patientSearch"
+                placeholder="🔍 Search patient, complaint..."
+                onkeyup="searchPatients()"
+            >
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table id="patientTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="patientTableBody">
+                    <!-- Populated dynamically from Flask database API -->
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--muted); padding: 25px;">
+                            Loading patient records from database...
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about-section">
+
+    <div class="about-content">
+
+        <div class="badge">
+            ABOUT SAARTHI
+        </div>
+
+        <h2>
+            Making Patient Case Taking Smarter
+        </h2>
+
+        <p>
+            SAARTHI is an AI-powered patient case-taking
+            system designed to reduce paperwork, collect
+            patient history efficiently and provide doctors
+            with structured information before consultation.
+        </p>
+
+        <div class="about-points">
+
+            <div>🤖 AI-assisted questioning</div>
+
+            <div>🎤 Voice-enabled interaction</div>
+
+            <div>🌐 Multilingual support</div>
+
+            <div>👨‍⚕️ Doctor verification</div>
+
+            <div>💾 Python Flask &amp; Database</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        ✚ SAARTHI
+    </div>
+
+    <p>
+        AI-Powered Patient Case Taking System with Python Flask Database
+    </p>
+
+    <small>
+        Prototype Healthcare System • Doctor verification required
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

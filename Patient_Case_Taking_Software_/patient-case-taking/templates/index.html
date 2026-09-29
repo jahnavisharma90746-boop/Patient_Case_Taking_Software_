@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Case-Taking Portal | Clinical Record Intake</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand">
+        <div class="brand-icon">✚</div>
+        <div class="brand-info">
+          <h1>MediCase Care</h1>
+          <span>Patient Intake &amp; Case-Taking</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link active">📝 Case Registration</a></li>
+          <li><a href="/dashboard" class="nav-link">📊 Doctor Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Security & HIPAA / GDPR Compliance Notice -->
+  <div class="security-banner">
+    <div class="security-banner-content">
+      <div>
+        <span class="security-badge">Security Notice</span>
+        This clinical software prototype is for demonstration and testing purposes. Do not input real protected health information (PHI). Production deployment requires multi-factor authentication, end-to-end encryption, and HIPAA/GDPR compliance auditing.
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Body Content -->
+  <main class="main-wrapper">
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">New Patient Case-Taking</h2>
+        <p class="page-subtitle">Record clinical anamnesis, chief complaints, and patient demographic data.</p>
+      </div>
+      <div>
+        <a href="/dashboard" class="btn btn-secondary btn-sm">
+          <span>Go to Doctor Dashboard →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Case-Taking Form Card -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title-group">
+          <span style="font-size: 1.25rem;">📋</span>
+          <h3 class="card-title">Clinical Intake Questionnaire</h3>
+        </div>
+        <span class="card-badge">Step 1: Patient Anamnesis</span>
+      </div>
+
+      <div class="card-body">
+        <form id="patientCaseForm" novalidate>
+
+          <!-- Section 1: Demographics -->
+          <div class="form-section-title">
+            <span>👤 Demographic Information</span>
+          </div>
+
+          <div class="form-grid">
+            <!-- 1. Patient Name -->
+            <div class="form-group">
+              <label class="form-label" for="name">
+                1. Patient Name <span class="required-star">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-control" 
+                placeholder="e.g. Eleanor Vance" 
+                required 
+                autocomplete="off"
+              >
+              <span class="invalid-feedback"></span>
+              <span class="form-hint">Enter the patient's full legal name.</span>
+            </div>
+
+            <!-- 2. Age -->
+            <div class="form-group">
+              <label class="form-label" for="age">
+                2. Age (Years) <span class="required-star">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="age" 
+                name="age" 
+                class="form-control" 
+                placeholder="e.g. 34" 
+                min="0" 
+                max="130" 
+                required
+              >
+              <span class="invalid-feedback"></span>
+              <span class="form-hint">Patient's chronological age (0-130).</span>
+            </div>
+
+            <!-- 3. Gender -->
+            <div class="form-group">
+              <label class="form-label" for="gender">
+                3. Gender <span class="required-star">*</span>
+              </label>
+              <select id="gender" name="gender" class="form-control" required>
+                <option value="" disabled selected>-- Select Gender --</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+              <span class="invalid-feedback"></span>
+              <span class="form-hint">Biological or identified gender for clinical record.</span>
+            </div>
+
+            <!-- 4. Phone Number -->
+            <div class="form-group">
+              <label class="form-label" for="phone">
+                4. Phone Number <span class="required-star">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-control" 
+                placeholder="e.g. +1-555-0142" 
+                required 
+                autocomplete="off"
+              >
+              <span class="invalid-feedback"></span>
+              <span class="form-hint">Primary contact or emergency reachable phone number.</span>
+            </div>
+          </div>
+
+          <!-- Section 2: Clinical Details -->
+          <div class="form-section-title">
+            <span>🩺 Clinical Assessment &amp; Symptoms</span>
+          </div>
+
+          <div class="form-grid">
+            <!-- 5. Main Symptoms -->
+            <div class="form-group full-width">
+              <label class="form-label" for="symptoms">
+                5. Main Symptoms / Chief Complaints <span class="required-star">*</span>
+              </label>
+              <textarea 
+                id="symptoms" 
+                name="symptoms" 
+                class="form-control" 
+                placeholder="Describe current presenting symptoms, onset, severity, and duration (e.g. Throbbing frontal headache for 3 days, accompanied by nausea)..." 
+                rows="3" 
+                required
+              ></textarea>
+              <span class="invalid-feedback"></span>
+              <span class="form-hint">Detailed description of presenting symptoms.</span>
+            </div>
+
+            <!-- 6. Medical History -->
+            <div class="form-group">
+              <label class="form-label" for="medical_history">
+                6. Medical History
+              </label>
+              <textarea 
+                id="medical_history" 
+                name="medical_history" 
+                class="form-control" 
+                placeholder="Past surgeries, chronic conditions (e.g. Asthma, Hypertension, Diabetes)..." 
+                rows="3"
+              ></textarea>
+              <span class="form-hint">Prior illnesses, surgeries, or family history (optional).</span>
+            </div>
+
+            <!-- 7. Allergies -->
+            <div class="form-group">
+              <label class="form-label" for="allergies">
+                7. Known Allergies
+              </label>
+              <textarea 
+                id="allergies" 
+                name="allergies" 
+                class="form-control" 
+                placeholder="Drug allergies, food allergies, environmental (e.g. Penicillin, Latex, NKDA)..." 
+                rows="3"
+              ></textarea>
+              <span class="form-hint">Crucial for medication safety. Type 'NKDA' if none known.</span>
+            </div>
+
+            <!-- 8. Current Medications -->
+            <div class="form-group">
+              <label class="form-label" for="medications">
+                8. Current Medications
+              </label>
+              <textarea 
+                id="medications" 
+                name="medications" 
+                class="form-control" 
+                placeholder="Current prescriptions, dosage, OTC supplements (e.g. Metformin 500mg daily)..." 
+                rows="3"
+              ></textarea>
+              <span class="form-hint">Active drug therapies and dosages (optional).</span>
+            </div>
+
+            <!-- 9. Additional Notes -->
+            <div class="form-group">
+              <label class="form-label" for="notes">
+                9. Additional Notes
+              </label>
+              <textarea 
+                id="notes" 
+                name="notes" 
+                class="form-control" 
+                placeholder="Observations, triage vitals, doctor impressions, or special care requests..." 
+                rows="3"
+              ></textarea>
+              <span class="form-hint">Physician impressions or follow-up notes (optional).</span>
+            </div>
+          </div>
+
+          <!-- Form Buttons Bar -->
+          <div class="form-actions">
+            <div class="form-actions-left">
+              <button type="submit" class="btn btn-primary">
+                <span>💾 Save Patient Case Record</span>
+              </button>
+              <button type="button" id="clearFormBtn" class="btn btn-secondary">
+                <span>↺ Clear Form</span>
+              </button>
+            </div>
+            <div class="form-actions-right">
+              <button type="button" id="fillDemoBtn" class="btn btn-teal btn-sm" title="Quickly load fictitious dummy patient data to test form submission">
+                <span>⚡ Fill Sample Data</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Recent Patient Intake Preview -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title-group">
+          <span style="font-size: 1.25rem;">⏱️</span>
+          <h3 class="card-title">Recently Registered Patient Cases</h3>
+        </div>
+        <a href="/dashboard" class="btn btn-secondary btn-sm">View Full Dashboard →</a>
+      </div>
+      <div class="card-body">
+        <div id="recentPatientsList">
+          <p class="text-muted">Loading recent intake cases...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <strong>MediCase Care &bull; Patient Case-Taking Software</strong> &bull; Python Flask + SQLite
+      </div>
+      <div class="footer-disclaimer">
+        🔒 Security Disclaimer: Educational demonstration prototype. In a production healthcare system, HIPAA/GDPR compliance, authentication, audit trails, and data encryption are mandatory.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
